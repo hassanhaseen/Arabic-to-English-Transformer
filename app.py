@@ -414,7 +414,48 @@ def translate(sentence):
 
     return predicted_sentence
 
-# Streamlit App UI components
+# Applying custom CSS styles
+st.markdown(
+    """
+    <style>
+    body {
+        background-color: black;
+        color: white;
+    }
+    .stApp {
+        background-color: black;
+    }
+    .stTextArea textarea {
+        background-color: #444444;
+        color: white;
+        border-radius: 10px;
+    }
+    .stButton>button {
+        background-color: #ff6600;
+        color: white;
+        font-weight: bold;
+        border-radius: 10px;
+        padding: 10px 20px;
+        border: none;
+    }
+    .stButton>button:hover {
+        background-color: #cc5500;
+    }
+    .stSuccess {
+        background-color: #90EE90;
+        color: black;
+        padding: 10px;
+        border-radius: 10px;
+        font-weight: bold;
+    }
+    h1, h2, h3, h4, h5, h6, p, label {
+        color: white !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.title("🌍 Arabic to English Translator")
 st.write("Enter Arabic text below and get an English translation.")
 
@@ -424,7 +465,6 @@ user_input = st.text_area("📝 Input Arabic Text", height=100)
 if st.button("Translate 🚀"):
     if user_input.strip():
         translation = translate(user_input)
-        st.success("**Translated Text:**")
-        st.write(translation)
+        st.success(f"**Translated Text:**\n\n{translation}")
     else:
         st.warning("⚠️ Please enter some text before translating.")
